@@ -49,13 +49,13 @@ class Main {
             IntFirst = Integer.parseInt(Words[0]);
             IntSecond = Integer.parseInt(Words[2]);
             if (Words[1].equals("+")) {
-                return ConvertToRoman(IntFirst + IntSecond);
+                return Integer.toString(IntFirst + IntSecond);
             } else if (Words[1].equals("-")) {
-                return ConvertToRoman(IntFirst - IntSecond);
+                return Integer.toString(IntFirst - IntSecond);
             } else if (Words[1].equals("/")) {
-                return ConvertToRoman(IntFirst / IntSecond);
+                return Integer.toString(IntFirst / IntSecond);
             } else if (Words[1].equals("*")) {
-                return ConvertToRoman(IntFirst * IntSecond);
+                return Integer.toString(IntFirst * IntSecond);
             } else {
                 throw new Exception ("String is not a mathematical operation");
             }
@@ -72,8 +72,13 @@ class Main {
                         return ConvertToRoman(IntFirst - IntSecond);
                     }
                 } else if (Words[1].equals("/")) {
-                    return ConvertToRoman(IntFirst / IntSecond);
+                    if (IntFirst / IntSecond <= 0) {
+                        throw new Exception ("There are no negative numbers in the roman numeral system");
+                    } else {
+                        return ConvertToRoman(IntFirst / IntSecond);
+                    }
                 } else if (Words[1].equals("*")) {
+
                     return ConvertToRoman(IntFirst * IntSecond);
                 } else {
                     throw new Exception ("String is not a mathematical operation");
@@ -91,6 +96,7 @@ class Main {
             if(ArabicValue[i] <= n) {
                 ReturnString += RomanValue[i];
                 n = n - ArabicValue[i];
+                i--;
             }
         }
         return ReturnString;
